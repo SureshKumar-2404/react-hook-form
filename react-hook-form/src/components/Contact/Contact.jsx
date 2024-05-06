@@ -3,7 +3,26 @@ import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 
 function Contact() {
-    const form = useForm();
+    // const form = useForm({ defaultValues: {
+    //     username:"Adam",
+    //     email:"adam@gmail.com",
+    //     phone:"9870999000"
+    // } });
+    const form = useForm({
+        defaultValues: async () => {
+            const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
+            const data = await response.json();
+            return {
+                username: data.username,
+                email: data.email,
+                phone: data.phone,
+                social: {
+                    twitter: "",
+                    facebook: ""
+                }
+            }
+        }
+    });
     const { register, control, handleSubmit, formState: { errors } } = form;
     // const { errors } = formState;
     const onSubmit = (data) => {
@@ -68,7 +87,16 @@ function Contact() {
 
                 </div>
 
+                <div className="mb-4">
+                    <label htmlFor='twitter' className="block text-gray-700 text-sm font-bold mb-2">Twitter</label>
+                    <input type='text' id='twitter' {...register('social.twitter')} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                </div>
 
+                <div className="mb-4">
+                    <label htmlFor='facebook' className="block text-gray-700 text-sm font-bold mb-2">Facebook</label>
+                    <input type='text' id='twitter' {...register('social.facebook')} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                </div>
+                
                 <div className="flex items-center justify-between">
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                         Submit
