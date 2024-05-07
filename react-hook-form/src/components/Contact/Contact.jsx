@@ -25,10 +25,11 @@ function Contact() {
                 age: 0,
                 dob: new Date()
             }
-        }
+        },
+        mode:"onSubmit"
     });
 
-    const { register, control, handleSubmit, formState: { errors, isDirty, touchedFields, dirtyFields, isValid, reset, isSubmitting, isSubmitted, isSubmitSuccessful, submitCount } } = form;
+    const { register, control, handleSubmit, reset, formState: { errors, isDirty, touchedFields, dirtyFields, isValid, isSubmitting, isSubmitted, isSubmitSuccessful, submitCount } } = form;
     const { fields, append, remove } = useFieldArray({
         control,
         name: "phNumbers"
@@ -45,7 +46,7 @@ function Contact() {
     }
 
     useEffect(() => {
-        if (isSubmitSuccessful && typeof reset === 'function') {
+        if (isSubmitSuccessful === true) {
             reset();
         }
     }, [isSubmitSuccessful]);
@@ -174,7 +175,7 @@ function Contact() {
                 </div>
 
                 <div className="flex items-center justify-between">
-                    <button disabled={!isDirty|| !isValid || isSubmitting} className={`py-2 px-4 rounded focus:outline-none focus:shadow-outline ${!isDirty || !isValid || isSubmitting ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-700 text-white font-bold'}`} type="submit">
+                    <button disabled={!isDirty || !isValid || isSubmitting} className={`py-2 px-4 rounded focus:outline-none focus:shadow-outline ${!isDirty || !isValid || isSubmitting ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-700 text-white font-bold'}`} type="submit">
                         Submit
                     </button>
                 </div>
@@ -189,6 +190,7 @@ function Contact() {
             </form>
             <DevTool control={control} />
         </div>
+
     );
 }
 
