@@ -8,6 +8,7 @@ function Header() {
                 <NavLink to="/" className={({isActive})=>`${isActive ? "text-orange-600":"text-gray-600"}`}>Home</NavLink>
                 <NavLink to="/about" className={({isActive})=>`${isActive ? "text-orange-600":"text-gray-600"}`}>About Us</NavLink>
                 <NavLink to="/contact" className={({isActive})=>`${isActive ? "text-orange-600":"text-gray-600"}`}>Contact</NavLink>
+                <NavLink to="/user" className={({isActive})=>`${isActive ? "text-orange-600":"text-gray-600"}`}>User</NavLink>
             </div>
         </div>
     );

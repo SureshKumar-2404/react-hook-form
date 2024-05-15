@@ -10,7 +10,7 @@ import Contact from './components/Contact/Contact.jsx'
 import Terms from './components/Pages/Terms.jsx'
 import Policy from './components/Pages/Policy.jsx'
 import User from './components/User/User.jsx'
-
+import swDev from './swDec'
 // const router = createBrowserRouter([
 //   {
 //     path: '/',
@@ -44,7 +44,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<Layout />}>
       <Route path="" element={<Home />}></Route>
       <Route path='about' element={<About />}></Route>
-      <Route path='user/:id' element={<User />}></Route>
+      <Route path='user' element={<User />}></Route>
       <Route path='contact' element={<Contact />}></Route>
       <Route path='terms-of-service' element={<Terms />}></Route>
       <Route path='privacy-policy' element={<Policy />}></Route>
@@ -57,3 +57,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <RouterProvider router={router} />
   </React.StrictMode>,
 )
+swDev();
